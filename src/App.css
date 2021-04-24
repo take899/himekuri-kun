@@ -2,7 +2,7 @@
   background-image: url('images/無地03.jpg');
   background-repeat: repeat;
   filter: brightness(110%);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
