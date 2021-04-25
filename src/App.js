@@ -1,32 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import * as holiday_jp from '@holiday-jp/holiday_jp';
+
 
 const DateDisplay = () => {
-  const textColor = (n) => {
-    switch (n) {
+  const weeklyColor = (dt) => {
+    if (holiday_jp.isHoliday(dt)) {
+      return 'text-red-600';
+    }
+    switch (dt.getDay()) {
       case 0: return 'text-red-600';
       case 6: return 'text-blue-600';
       default: return 'text-black';
     }
   }
+  const holidayName = (dt) => {
+    if (holiday_jp.isHoliday(dt)) {
+      return holiday_jp.between(dt, dt)[0]['name'];
+    }
+  }
 
-  const date = new Date();
-  const yearStr = `${date.getFullYear()}年`;
-  const monthStr = `${date.getMonth()}月`;
-  const dayStr = `${date.getDate()}`;
-  const weekStr = `${['日','月','火','水','木','金','土'][date.getDay()]}曜日`;
-  const strColor = `${textColor(date.getDay())}`;
+  const dt = new Date();
+  dt.setDate(dt.getDate() + 4);
+  const yearStr = `${dt.getFullYear()}年`;
+  const monthStr = `${dt.getMonth() + 1}月`;
+  const dayStr = `${dt.getDate()}`;
+  const weekStr = `${['日','月','火','水','木','金','土'][dt.getDay()]}曜日`;
   
   return (
-    <div className="relative">
+    <React.Fragment>
       <div className="w-auto h-10 bg-black"></div>
-      <div className={`${strColor} text-center`}>
-        <div className="mt-2 ml-4 text-left">{yearStr}</div>
-        <div className="text-4xl">{monthStr}</div>
-        <div className="mt-2 font-bold text-huge">{dayStr}</div>
-        <div className="mt-6 text-2xl">{weekStr}</div>
+      <div className={`__font-gothic ${weeklyColor(dt)}`}>
+        <div className="mx-4 mt-2">
+          <div className="absolute text-left">{yearStr}</div>
+          <div className="relative text-4xl text-center -top-2">{monthStr}</div>
+        </div>
+        <div className="text-center">
+          <div className="font-bold text-huge">{dayStr}</div>
+          <div className="mt-6 text-3xl">{weekStr}</div>
+          <div className="text-lg">{holidayName(dt)}</div>
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   )
 };
 
