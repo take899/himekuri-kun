@@ -14,3 +14,18 @@
 .__font-gothic {
   /* font-family: 'メイリオ', 'MS Pゴシック'; */
 }
+
+.__calendar-bottom {
+  position: absolute;
+  top: 418px;
+  z-index: 0;
+  height: 40px;
+  width: 16rem;
+  opacity: 0.3;
+  background:
+    linear-gradient(310deg, transparent 10px, black 10px),
+    linear-gradient(50deg,  transparent 10px, black 10px);
+  background-position:  bottom right, bottom left;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+}
