@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import * as holiday_jp from '@holiday-jp/holiday_jp';
 
@@ -28,21 +28,24 @@ const DateDisplay = () => {
   const weekStr = `${['日','月','火','水','木','金','土'][dt.getDay()]}曜日`;
   
   return (
-    <div className="relative w-64 mx-auto bg-white shadow-calendar top-14 h-96">
-      <div className="w-auto h-10 bg-black" onClick={() => setCount(0)}></div>
-      <div onClick={() => setCount(count + 1)}>
-        <div className={`__font-gothic ${weeklyColor(dt)}`}>
-          <div className="mx-4 mt-2">
-            <div className="absolute text-lg text-left">{yearStr}</div>
-            <div className="relative text-4xl text-center -top-2">{monthStr}</div>
-          </div>
-          <div className="text-center">
-            <div className="font-bold text-huge">{dayStr}</div>
-            <div className="mt-6 text-3xl">{weekStr}</div>
-            <div className="text-lg">{holidayName(dt)}</div>
+    <div className="absolute transform -translate-x-32 left-1/2">
+      <div className="absolute z-10 w-64 bg-white top-14 h-96 shadow-calendar">
+        <div className="w-auto h-10 bg-black border-b-2 border-gray-300 shadow-b-sm" onClick={() => setCount(0)}></div>
+        <div onClick={() => setCount(count + 1)}>
+          <div className={`__font-gothic ${weeklyColor(dt)}`}>
+            <div className="mx-4 mt-2">
+              <div className="absolute text-lg text-left">{yearStr}</div>
+              <div className="relative text-4xl text-center -top-2">{monthStr}</div>
+            </div>
+            <div className="text-center">
+              <div className="font-bold text-huge">{dayStr}</div>
+              <div className="mt-6 text-3xl">{weekStr}</div>
+              <div className="text-lg">{holidayName(dt)}</div>
+            </div>
           </div>
         </div>
       </div>
+      <div className="__calendar-bottom"></div>
     </div>
   )
 };
@@ -52,6 +55,7 @@ function App() {
     <React.Fragment>
       <div className="__bg-image"></div>
       <DateDisplay />
+
     </React.Fragment>
   )
 }
