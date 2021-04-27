@@ -11,14 +11,20 @@
   height: 100%;
 }
 
-.__font-gothic {
-  /* font-family: 'メイリオ', 'MS Pゴシック'; */
+.__paper {
+  visibility: visible;
+  opacity: 1;
+}
+.__paper-fadeout {
+  opacity: 0;
+  transform: translateY(400px);
+  transition: all .2s ease;
 }
 
 .__calendar-bottom {
   position: absolute;
-  top: 418px;
-  z-index: 0;
+  top: 424px;
+  z-index: 5;
   height: 40px;
   width: 16rem;
   background:
